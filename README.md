@@ -1,5 +1,5 @@
 # async-breakfast
-A dable in the .net async/await patern
+A dable in the .net async/await patern. Based on this [Microsoft article](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/)
 
 I put this together for a presentation. Here are my notes from the slides:
 ## Async/Await Pattern
@@ -35,7 +35,9 @@ Async void: these methods don’t return a Task. Use sparingly and only for trul
 
 Mixing sync and async: If you choose to do async, it is better if the entire stack of that one async call becomes async.  In .net framework (4.5), calling blocking code from non-blocking code can result in deadlocks. The sync.context allows only one chunk of code at a time. When async completes the sync.context tries to run the rest of the code in the chunk. If you call sync method on async method, the sync.context already has a thread running when it tries to step back in to the original async code. Deadlock. You won’t see this behaviour in .net core as there is no sync.context, but it would render your async work pointless. Also if you run out of threads in your thread pool you will see a similar result to a deadlock
 
-#### References
+#### Other useful references
 https://msdn.microsoft.com/en-us/magazine/dn802603.aspx
+
 https://exceptionnotfound.net/using-async-and-await-in-asp-net-what-do-these-keywords-mean/
+
 https://devblogs.microsoft.com/pfxteam/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
